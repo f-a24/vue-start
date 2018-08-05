@@ -9,14 +9,14 @@
 ## Directory structure
 
 ```
-es6-start
+vue-start
 ├─ public
 |  └─ index.html           // Entry file
 ├─ src
 |  ├─ App.vue              // App file 
-|  ├─ index.js          // Root file
+|  ├─ index.js             // Root file
 |  └─ test
-|     └─ App.test.js     // Test code
+|     └─ App.test.js       // Test code
 ├─ .babelrc                // Babel configuration file
 ├─ .eslintrc               // ESLint configuration file
 ├─ package.json            // npm configuration file
