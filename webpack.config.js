@@ -1,8 +1,8 @@
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-  mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
-  entry: ['babel-polyfill', `${__dirname}/src/index.js`],
+  mode: 'production',
+  entry: `${__dirname}/src/index.js`,
   output: {
     path: `${__dirname}/public`,
     filename: 'index.js'
@@ -19,7 +19,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: [['env', {'modules': false}]]
+              presets: ['@babel/preset-env']
             }
           }
         ],
@@ -28,15 +28,13 @@ module.exports = {
       {
         test: /\.(css|scss)$/,
         use: [
-          'style-loader', 
+          'style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [
-                require('autoprefixer')({grid: true})
-              ]
-            },
+              plugins: [require('autoprefixer')({ grid: true })]
+            }
           },
           'sass-loader'
         ]
@@ -48,16 +46,17 @@ module.exports = {
     ]
   },
   resolve: {
-    alias: { 'vue$': 'vue/dist/vue.esm.js' },
+    alias: { vue$: 'vue/dist/vue.esm.js' },
     extensions: ['.js', '.vue']
   },
-  plugins: [ new VueLoaderPlugin() ],
+  plugins: [new VueLoaderPlugin()],
   performance: {
     hints: false
   },
-  serve: {
-    content: 'public/',
-    open: true,
-    port: 3000
+  devServer: {
+    contentBase: `${__dirname}/public`,
+    port: 3000,
+    hot: true,
+    open: true
   }
 };
